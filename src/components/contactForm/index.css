@@ -1,0 +1,40 @@
+.form-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+  /* max-width: 800px; */
+}
+
+.form-main label {
+  margin-top: 0.8rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.form-main input,
+.form-main textarea {
+  border-radius: 1rem;
+  border: 1px solid var(--main-fg-color);
+  padding: 0.8rem;
+  transition-duration: 300ms;
+}
+
+.form-main input:focus,
+.form-main textarea:focus {
+  box-shadow: 0px 1px 5px 0px var(--main-bg-color);
+}
+
+.form-main input::placeholder,
+.form-main textarea::placeholder {
+  color: #aaaaaa;
+}
+
+.input-group {
+  width: 300px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+}

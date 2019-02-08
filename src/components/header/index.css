@@ -1,0 +1,9 @@
+.header {
+  background-color: var(--main-fg-color);
+  color: var(--main-bg-color);
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  top: 0;
+}

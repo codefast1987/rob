@@ -1,0 +1,11 @@
+.booking-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.booking-submit-button {
+  margin-left: 15%;
+  margin-right: 15%;
+  width: 70%;
+}

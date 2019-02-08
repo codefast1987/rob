@@ -1,0 +1,22 @@
+.section-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main-bg-color);
+  /* color: var(--main-bg-color); */
+  /* font-size: 2rem; */
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.section-header {
+  font-size: 2rem;
+  padding: 1rem;
+  margin: 1.5rem;
+  border-bottom: 1px solid var(--main-fg-color);
+}
+
+.section-container {
+  margin: 1.5rem;
+}
