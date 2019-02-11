@@ -15,8 +15,19 @@
   padding: 1rem;
   margin: 1.5rem;
   border-bottom: 1px solid var(--main-fg-color);
+  display: flex;
+  justify-content: space-between;
 }
 
 .section-container {
   margin: 1.5rem;
+}
+
+.section-container::before {
+  display: block;
+  content: ' ';
+  margin-top: -60px;
+  height: 60px;
+  visibility: hidden;
+  pointer-events: none;
 }

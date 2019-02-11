@@ -18,19 +18,17 @@ export default class BookingContainer extends Component {
       updateUserEvent: false,
       refetching: false,
       customer: {
-        name: 'asdf',
-        estateAgent: 'asdf',
-        email: 'asdf',
-        mobile: 'asdf',
-        street: 'asdf',
-        street2: 'asdf',
-        city: 'asdf',
-        state: 'asdf',
-        zip: 'asdf'
+        name: 'test',
+        estateAgent: 'test',
+        email: 'test',
+        mobile: 'test',
+        street: 'test',
+        street2: 'test',
+        city: 'test'
       },
       appointment: {
-        idealDate: new moment().format('YYYY-MM-DD'),
-        idealTime: new moment().format('HH:mm:ss'),
+        idealDate: new moment().format('YYYY-MM-DD') || '',
+        idealTime: new moment().format('HH:mm:ss') || '',
         buildingAge: '',
         buildingType: '',
         reportReason: ''
@@ -61,17 +59,7 @@ export default class BookingContainer extends Component {
     return events;
   }
 
-  _verifyCustomer({
-    name,
-    estateAgent,
-    email,
-    mobile,
-    street,
-    street2,
-    city,
-    state,
-    zip
-  }) {
+  _verifyCustomer({ name, estateAgent, email, mobile, street, street2, city }) {
     return !(
       name === '' ||
       estateAgent === '' ||
@@ -79,9 +67,17 @@ export default class BookingContainer extends Component {
       mobile === '' ||
       street === '' ||
       street2 === '' ||
-      city === '' ||
-      state === '' ||
-      zip === ''
+      city === ''
+    );
+  }
+
+  _verifyAppointment({ date, time, buildingType, buildingAge, reportReason }) {
+    return !(
+      date === '' ||
+      time === '' ||
+      buildingType === '' ||
+      buildingAge === '' ||
+      reportReason === ''
     );
   }
 
@@ -116,15 +112,21 @@ export default class BookingContainer extends Component {
               getEvents={this._getEvents}
               userEvent={{
                 start: `${idealDate}T${idealTime}`,
-                title: 'User Event',
-                editable: true
+                title: 'Your Appointment',
+                editable: true,
+                color: 'var(--main-fg-color)'
               }}
               {...this.state.appointment}
               onChange={this._updateAppointment}
-            />
-            <Button className="booking-submit-button" onClick={this._submit}>
-              Submit
-            </Button>
+            >
+              <Button
+                className="booking-submit-button"
+                disabled={!this._verifyAppointment(this.state.appointment)}
+                onClick={this._submit}
+              >
+                Book
+              </Button>
+            </Appointment>
           </CollapseSection>
         </div>
       </div>

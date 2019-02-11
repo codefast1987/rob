@@ -5,14 +5,14 @@
   justify-content: center;
 }
 
-.main-menu > * {
+.main-menu > a {
   color: var(--main-bg-color);
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1rem;
   text-align: center;
   text-transform: uppercase;
-  margin: 0.5rem;
-  padding: 0.3rem;
+  margin: 0 0.5rem 0 0.5rem;
+  padding: 0.3rem 0 0.3rem 0;
   border: 2px solid var(--main-fg-color);
   border-radius: 1rem;
   transition-duration: 300ms;
@@ -20,4 +20,11 @@
 
 .main-menu > *:hover {
   border: 2px solid var(--main-bg-color);
+}
+
+@media only screen and (max-width: 600px) {
+  .main-menu {
+    justify-content: space-between;
+    width: 100%;
+  }
 }

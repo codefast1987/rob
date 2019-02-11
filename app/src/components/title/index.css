@@ -3,3 +3,9 @@
   text-align: center;
   text-transform: uppercase;
 }
+
+@media only screen and (max-width: 600px) {
+  .not-top .main-title {
+    display: none;
+  }
+}

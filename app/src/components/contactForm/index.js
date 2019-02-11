@@ -33,7 +33,7 @@ export default class ContactForm extends Component {
     return (
       <div className="form-main">
         <div className="input-group">
-          <label>Name</label>
+          <label>Name *</label>
           <input
             onChange={(event) => onChange({ name: event.target.value })}
             value={name}
@@ -45,13 +45,13 @@ export default class ContactForm extends Component {
             value={estateAgent}
             placeholder="Estate Agent"
           />
-          <label>Mobile</label>
+          <label>Mobile *</label>
           <input
             onChange={(event) => onChange({ mobile: event.target.value })}
             value={mobile}
             placeholder="Mobile"
           />
-          <label>Email</label>
+          <label>Email *</label>
           <input
             type="email"
             onChange={(event) => onChange({ email: event.target.value })}
@@ -60,20 +60,20 @@ export default class ContactForm extends Component {
           />
         </div>
         <div className="input-group">
-          <label>Street</label>
+          <label>Street *</label>
           <input
             onChange={(event) => onChange({ street: event.target.value })}
             value={street}
             placeholder="Street"
           />
-          <label>Street 2</label>
+          <label>Street 2 *</label>
           <input
             onChange={(event) => onChange({ street2: event.target.value })}
             value={street2}
             placeholder="Street 2"
           />
 
-          <label>City</label>
+          <label>City *</label>
           <input
             onChange={(event) => onChange({ city: event.target.value })}
             value={city}

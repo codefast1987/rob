@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import View from './view';
+import moment from 'moment-timezone';
+// import moment from 'moment';
+
 import './index.css';
 import 'fullcalendar/dist/fullcalendar.css';
 import 'fullcalendar-scheduler/dist/scheduler.css';
 
 import $ from 'jquery';
-import 'fullcalendar';
 import 'fullcalendar-scheduler';
 // import { Knack } from 'easyforms-knack';
-import moment from 'moment-timezone';
 import './index.css';
 import Knack from '../../connections/knack';
 
 // moment.tz.setDefault('UTC');
-
-//then inside the fullCalendar object
 
 class Appointment extends Component {
   constructor(props) {
@@ -91,6 +90,7 @@ class Appointment extends Component {
         callback(await this._getEvents(start, end)),
       loading: (loading) => this.setState({ loading }),
       eventLimit: 5,
+      titleFormat: 'MMM D',
       allDaySlot: false,
       minTime: '07:00:00',
       maxTime: '19:00:00',

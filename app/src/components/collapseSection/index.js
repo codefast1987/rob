@@ -20,7 +20,7 @@ export default class CollapseSection extends Component {
     return (
       <div className="collapse-section-container">
         <div
-          className="collapse-section-header"
+          className="section-header"
           onClick={() => {
             if (!this.props.disabled)
               this.setState({ isOpened: !this.state.isOpened });

@@ -1,13 +1,5 @@
-.collapse-section-header {
-  display: flex;
-  justify-content: space-between;
+.collapse-section-container .section-header {
   cursor: pointer;
-  background-color: var(--main-fg-color);
-  color: var(--main-bg-color);
-  padding: 0.5rem;
-  margin: 0.5rem 0 0.5rem 0;
-  font-size: 1.8rem;
-  font-weight: bold;
 }
 
 .collapse-section-container {

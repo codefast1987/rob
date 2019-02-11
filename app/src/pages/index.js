@@ -6,6 +6,7 @@ import Image from '../components/image';
 import BookingContainer from '../containers/booking';
 import Header from '../components/header';
 import './index.css';
+import Carousel from '../components/carousel';
 
 export default class Page extends Component {
   render() {
@@ -20,7 +21,7 @@ export default class Page extends Component {
             <a href="#book">Book</a>
           </Menu>
         </Header>
-
+        <Carousel />
         <Section id="about" header="About">
           "Sed ut perspiciatis unde omnis iste natus error sit voluptatem
           accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
@@ -36,6 +37,10 @@ export default class Page extends Component {
           ea voluptate velit esse quam nihil molestiae consequatur, vel illum
           qui dolorem eum fugiat quo voluptas nulla pariatur?"
         </Section>
+        <Section id="book" header="Booking">
+          <BookingContainer />
+        </Section>
+
         <Image />
         <Section id="info" header="Info">
           "Sed ut perspiciatis unde omnis iste natus error sit voluptatem
@@ -52,7 +57,6 @@ export default class Page extends Component {
           ea voluptate velit esse quam nihil molestiae consequatur, vel illum
           qui dolorem eum fugiat quo voluptas nulla pariatur?"
         </Section>
-        <Image />
         <Section id="contact">
           "Sed ut perspiciatis unde omnis iste natus error sit voluptatem
           accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
@@ -67,10 +71,6 @@ export default class Page extends Component {
           ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in
           ea voluptate velit esse quam nihil molestiae consequatur, vel illum
           qui dolorem eum fugiat quo voluptas nulla pariatur?"
-        </Section>
-        <Image />
-        <Section id="book">
-          <BookingContainer />
         </Section>
 
         <Image />
