@@ -4,16 +4,7 @@ import './index.css';
 export default class ContactForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name: '',
-      estateAgent: '',
-      email: '',
-      mobile: '',
-      street: '',
-      suburb: '',
-      city: '',
-      zipCode: ''
-    };
+    
   }
 
   render() {

@@ -34,6 +34,7 @@ export default class Knack {
       start: new moment(record.field_2, 'DD/MM/YYYY h:mma').format(
         'YYYY-MM-DDTHH:mm:ss'
       ),
+      title: 'Booked',
       color: 'grey'
     }));
   }

@@ -14,17 +14,17 @@ export default class BookingContainer extends Component {
 
     this.knack = new Knack();
 
-    this.state = {
+    this.defaultState = {
       updateUserEvent: false,
       refetching: false,
       customer: {
-        name: 'test',
-        estateAgent: 'test',
-        email: 'test',
-        mobile: 'test',
-        street: 'test',
-        street2: 'test',
-        city: 'test'
+        name: '',
+        estateAgent: '',
+        email: '',
+        mobile: '',
+        street: '',
+        street2: '',
+        city: ''
       },
       appointment: {
         idealDate: new moment().format('YYYY-MM-DD') || '',
@@ -34,6 +34,8 @@ export default class BookingContainer extends Component {
         reportReason: ''
       }
     };
+
+    this.state = { ...this.defaultState };
 
     this._updateAppointment = this._updateAppointment.bind(this);
     this._updateCustomer = this._updateCustomer.bind(this);
@@ -84,7 +86,7 @@ export default class BookingContainer extends Component {
   async _submit() {
     await this.knack.bookAppointment(this.state);
     this.setState({ refetching: true });
-    this.setState({ refetching: false });
+    this.setState({ ...this.defaultState });
   }
 
   render() {

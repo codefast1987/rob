@@ -10,7 +10,6 @@ export default class Header extends Component {
     };
 
     window.onscroll = (e) => {
-      console.log(e.pageY);
       if (e.pageY > 0) this.setState({ top: false });
       if (e.pageY === 0) this.setState({ top: true });
     };
