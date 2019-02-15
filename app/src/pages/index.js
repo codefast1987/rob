@@ -21,7 +21,15 @@ export default class Page extends Component {
             <a href="#book">Book</a>
           </Menu>
         </Header>
-        <Carousel />
+
+        <Carousel
+          initialSlideHeight={500}
+          autoplay={true}
+          heightMode={false}
+          autoplayInterval={1000}
+          wrapAround={true}
+        />
+
         <Section id="about" header="About">
           "Sed ut perspiciatis unde omnis iste natus error sit voluptatem
           accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
@@ -37,6 +45,7 @@ export default class Page extends Component {
           ea voluptate velit esse quam nihil molestiae consequatur, vel illum
           qui dolorem eum fugiat quo voluptas nulla pariatur?"
         </Section>
+
         <Section id="book" header="Booking">
           <BookingContainer />
         </Section>
