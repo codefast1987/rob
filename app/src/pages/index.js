@@ -26,7 +26,7 @@ export default class Page extends Component {
           initialSlideHeight={500}
           autoplay={true}
           heightMode={false}
-          autoplayInterval={1000}
+          autoplayInterval={10000}
           wrapAround={true}
         />
 

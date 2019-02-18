@@ -7,12 +7,16 @@ export default class Knack {
     this.url = 'https://api.knack.com/v1/objects';
 
     this.appointmentObj = 'object_1';
-    this.appointmentView = 'view_3';
-    this.appointmentScene = 'scene_2';
-
+    this.agentObject = 'object_6';
     this.customerObj = 'object_2';
+
+    this.appointmentView = 'view_3';
     this.customerView = 'view_7';
+    this.agentView = 'view_24';
+
+    this.appointmentScene = 'scene_2';
     this.customerScene = 'scene_5';
+    this.agentScene = 'scene_16';
   }
 
   async getUserToken() {
@@ -32,6 +36,8 @@ export default class Knack {
 
   async bookAppointment({ customer, appointment }) {
     let knackCustomer = await this.createCustomer(customer);
+
+    let knackAgent = await this.createAgent({ name: customer.estateAgent });
 
     if (!knackCustomer.id)
       throw new Error('No customerId, customer not made/found!');
@@ -64,6 +70,62 @@ export default class Knack {
       title: 'Booked',
       color: 'grey'
     }));
+  }
+
+  async createAgent({ name }) {
+    let filters = {
+      match: 'and',
+      rules: [
+        {
+          field: 'field_31',
+          operator: 'is',
+          value: name
+        }
+      ]
+    };
+
+    let response = await (await fetch(
+      `https://api.knack.com/v1/objects/${
+        this.agentObject
+      }/records?filters=${encodeURIComponent(
+        JSON.stringify(filters)
+      )}&rows_per_page=1000`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Knack-Application-Id': this.applicationId,
+          'X-Knack-REST-API-KEY': this.apiKey
+        }
+      }
+    )).json();
+
+    if (response.records.length > 0) return response.records[0];
+
+    let token = await this.getUserToken();
+    response = await (await fetch(
+      `https://api.knack.com/v1/pages/${this.agentScene}/views/${
+        this.agentView
+      }/records`,
+      {
+        method: 'POST',
+        headers: {
+          'X-Knack-Application-Id': this.applicationId,
+          'X-Knack-REST-API-KEY': 'knack',
+          Authorization: token,
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          field_31: name
+        })
+      }
+    )).json();
+
+    if (response.errors)
+      throw new Error(
+        response.errors.reduce((string, err) => (string += err.message), '')
+      );
+
+    return response.record;
   }
 
   async createCustomer({
