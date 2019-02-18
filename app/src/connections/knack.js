@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { addAppenateAppointment, addAppenateCustomer } from './appenate';
 
 export default class Knack {
   constructor() {
@@ -13,11 +14,40 @@ export default class Knack {
   async bookAppointment({ customer, appointment }) {
     console.log('submitting', customer, appointment);
 
-    let customerId = (await this.createCustomer(customer)).id;
+    let knackCustomer = await this.createCustomer(customer);
 
-    if (!customerId) throw new Error('No customerId, customer not made/found!');
+    if (!customer.id)
+      throw new Error('No customerId, customer not made/found!');
 
-    await this.createAppointment({ ...appointment, customerId });
+    let knackAppointment = (appointment = await this.createAppointment({
+      ...appointment,
+      customerId: knackCustomer.id
+    }));
+
+    if (!appointment.id)
+      throw new Error('No appointment id, appointment not made/found!');
+
+    await addAppenateAppointment({
+      StartTime: new moment(
+        `${customer.idealDate} ${customer.idealTime}`,
+        'YYYY-MM-DD HH:mm:ss'
+      ).format('DD/MM/YYYY HH:mma'),
+      Duration: 2,
+      Customer: knackCustomer.id,
+      BuildingType: appointment.buildingType,
+      BuildingAge: appointment.buildingAge,
+      ReportReason: appointment.reportReason,
+      DateCreated: new moment().format('DD/MM/YYY HH:mma')
+    });
+
+    await addAppenateCustomer({
+      Name: customer.name,
+      Email: customer.email,
+      Mobile: customer.mobile,
+      Address: customer.address
+    });
+
+    await console.log('submitted', customer, appointment);
   }
 
   async getCalendarData(startDate, endDate) {

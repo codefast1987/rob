@@ -43,8 +43,6 @@ class Appointment extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('update', this.props);
-
     if (prevProps.refetching === false && this.props.refetching === true) {
       this._refetchEvents();
     }
