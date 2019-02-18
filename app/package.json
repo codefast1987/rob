@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "appenate-easyforms": "^1.0.5",
     "fullcalendar": "^3.10.0",
     "fullcalendar-scheduler": "^1.9.4",
     "jquery": "^3.3.1",

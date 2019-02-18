@@ -90,8 +90,6 @@ export default class BookingContainer extends Component {
   }
 
   render() {
-    console.log(this.state);
-
     let { refetching, updateUserEvent } = this.state;
     let { idealDate, idealTime } = this.state.appointment;
     return (

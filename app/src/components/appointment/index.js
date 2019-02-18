@@ -53,14 +53,12 @@ class Appointment extends Component {
 
   _updateUserEvent() {
     let { userEvent } = this.props;
-    console.log('userEvent', userEvent);
 
     let events = this.calendar.fullCalendar('clientEvents');
     let event = events.find(({ title }) => title === userEvent.title);
 
     if (event) {
       event.start = userEvent.start;
-      console.log('updateUserEvent', event);
       this.calendar.fullCalendar('changeView', 'agendaWeek', userEvent.start);
       this.calendar.fullCalendar('updateEvent', event);
       this.setState({ userEvent });

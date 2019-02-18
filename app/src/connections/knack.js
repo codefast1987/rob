@@ -1,5 +1,4 @@
 import moment from 'moment';
-import { addAppenateAppointment, addAppenateCustomer } from './appenate';
 
 export default class Knack {
   constructor() {
@@ -8,46 +7,44 @@ export default class Knack {
     this.url = 'https://api.knack.com/v1/objects';
 
     this.appointmentObj = 'object_1';
+    this.appointmentView = 'view_3';
+    this.appointmentScene = 'scene_2';
+
     this.customerObj = 'object_2';
+    this.customerView = 'view_7';
+    this.customerScene = 'scene_5';
+  }
+
+  async getUserToken() {
+    let { session } = await (await fetch(
+      `https://api.knack.com/v1/applications/${this.applicationId}/session`,
+      {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          email: 'keith@easyforms.co.nz',
+          password: 'easyforms'
+        })
+      }
+    )).json();
+    return session.user.token;
   }
 
   async bookAppointment({ customer, appointment }) {
-    console.log('submitting', customer, appointment);
-
     let knackCustomer = await this.createCustomer(customer);
 
-    if (!customer.id)
+    if (!knackCustomer.id)
       throw new Error('No customerId, customer not made/found!');
 
-    let knackAppointment = (appointment = await this.createAppointment({
+    let knackAppointment = await this.createAppointment({
       ...appointment,
       customerId: knackCustomer.id
-    }));
+    });
 
-    if (!appointment.id)
+    if (!knackAppointment.id)
       throw new Error('No appointment id, appointment not made/found!');
 
-    await addAppenateAppointment({
-      StartTime: new moment(
-        `${customer.idealDate} ${customer.idealTime}`,
-        'YYYY-MM-DD HH:mm:ss'
-      ).format('DD/MM/YYYY HH:mma'),
-      Duration: 2,
-      Customer: knackCustomer.id,
-      BuildingType: appointment.buildingType,
-      BuildingAge: appointment.buildingAge,
-      ReportReason: appointment.reportReason,
-      DateCreated: new moment().format('DD/MM/YYY HH:mma')
-    });
-
-    await addAppenateCustomer({
-      Name: customer.name,
-      Email: customer.email,
-      Mobile: customer.mobile,
-      Address: customer.address
-    });
-
-    await console.log('submitted', customer, appointment);
+    return { knackAppointment, knackCustomer };
   }
 
   async getCalendarData(startDate, endDate) {
@@ -107,36 +104,42 @@ export default class Knack {
       }
     )).json();
 
-    console.log('search result', response);
     if (response.records.length > 0) return response.records[0];
 
-    response = await (await fetch(`${this.url}/${this.customerObj}/records`, {
-      method: 'POST',
-      headers: {
-        'X-Knack-Application-Id': this.applicationId,
-        'X-Knack-REST-API-KEY': this.apiKey,
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        field_5: { first, last },
-        field_6: { email },
-        field_7: mobile,
-        field_8: {
-          street,
-          street2,
-          city,
-          state,
-          zip
-        }
-      })
-    })).json();
+    let token = await this.getUserToken();
+    response = await (await fetch(
+      `https://api.knack.com/v1/pages/${this.customerScene}/views/${
+        this.customerView
+      }/records`,
+      {
+        method: 'POST',
+        headers: {
+          'X-Knack-Application-Id': this.applicationId,
+          'X-Knack-REST-API-KEY': 'knack',
+          Authorization: token,
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          field_5: { first, last },
+          field_6: { email },
+          field_7: mobile,
+          field_8: {
+            street,
+            street2,
+            city,
+            state,
+            zip
+          }
+        })
+      }
+    )).json();
 
     if (response.errors)
       throw new Error(
         response.errors.reduce((string, err) => (string += err.message), '')
       );
 
-    return response;
+    return response.record;
   }
 
   async createAppointment({
@@ -147,15 +150,19 @@ export default class Knack {
     reportReason,
     customerId
   }) {
+    let token = await this.getUserToken();
     let start = moment(`${idealDate}T${idealTime}`, 'YYYY-MM-DDTHH:mm:ss');
 
     let response = await (await fetch(
-      `${this.url}/${this.appointmentObj}/records`,
+      `https://api.knack.com/v1/pages/${this.appointmentScene}/views/${
+        this.appointmentView
+      }/records`,
       {
         method: 'POST',
         headers: {
           'X-Knack-Application-Id': this.applicationId,
-          'X-Knack-REST-API-KEY': this.apiKey,
+          'X-Knack-REST-API-KEY': 'knack',
+          Authorization: token,
           'content-type': 'application/json'
         },
         body: JSON.stringify({
@@ -178,6 +185,6 @@ export default class Knack {
         response.errors.reduce((string, err) => (string += err.message), '')
       );
 
-    return response;
+    return response.record;
   }
 }
