@@ -27,10 +27,9 @@ export default class Button extends Component {
         onClick={this._onClick}
       >
         {this.state.loading ? (
-          <BeatLoader width={80} widthUnit="%" color="var(--main-bg-color)" />
-        ) : (
-          this.props.children
-        )}
+          <BeatLoader width={80} widthUnit="%" color="var(--main-fg-color)" />
+        ) : (this.props.children)
+        }
       </button>
     );
   }

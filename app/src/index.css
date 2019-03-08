@@ -1,6 +1,6 @@
 :root {
-  --main-bg-color: #f3f3f3;
-  --main-fg-color: #cb262e;
+  --main-bg-color: #05053a;
+  --main-fg-color: #fbfbfd;
 }
 
 body {
@@ -11,7 +11,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+y
 input,
 textarea,
 button,

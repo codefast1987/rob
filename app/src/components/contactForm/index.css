@@ -1,7 +1,7 @@
 .form-main {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: left;
   width: 100%;
   flex-wrap: wrap;
   /* max-width: 800px; */
@@ -16,14 +16,14 @@
 .form-main input,
 .form-main textarea {
   border-radius: 1rem;
-  border: 1px solid var(--main-fg-color);
+  border: 1px solid var(--main-bg-color);
   padding: 0.8rem;
   transition-duration: 300ms;
 }
 
 .form-main input:focus,
 .form-main textarea:focus {
-  box-shadow: 0px 1px 5px 0px var(--main-bg-color);
+  box-shadow: 0px 1px 5px 0px var(--main-fg-color);
 }
 
 .form-main input::placeholder,

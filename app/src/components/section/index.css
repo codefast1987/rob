@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--main-bg-color);
+  background-color: var(--main-fg-color);
   /* color: var(--main-bg-color); */
   /* font-size: 2rem; */
   margin-top: 1rem;
@@ -14,7 +14,7 @@
   font-size: 2rem;
   padding: 1rem;
   margin: 1.5rem;
-  border-bottom: 1px solid var(--main-fg-color);
+  border-bottom: 1px solid var(--main-bg-color);
   display: flex;
   justify-content: space-between;
 }

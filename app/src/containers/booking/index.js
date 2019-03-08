@@ -114,7 +114,7 @@ export default class BookingContainer extends Component {
                 start: `${idealDate}T${idealTime}`,
                 title: 'Your Appointment',
                 editable: true,
-                color: 'var(--main-fg-color)'
+                color: 'var(--main-bg-color)'
               }}
               {...this.state.appointment}
               onChange={this._updateAppointment}
