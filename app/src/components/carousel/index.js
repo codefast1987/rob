@@ -10,12 +10,12 @@ export default class ImageCarousel extends Component {
     return (
       <div className="container">
         <Carousel {...this.props}>
-          <img src="http://placehold.it/1000x300/ffffff/c0392b/&text=slide1" />
-          <img src="http://placehold.it/1000x300/ffffff/c0392b/&text=slide2" />
-          <img src="http://placehold.it/1000x300/ffffff/c0392b/&text=slide3" />
-          <img src="http://placehold.it/1000x300/ffffff/c0392b/&text=slide4" />
-          <img src="http://placehold.it/1000x300/ffffff/c0392b/&text=slide5" />
-          <img src="http://placehold.it/1000x300/ffffff/c0392b/&text=slide6" />
+          <img src="https://picsum.photos/1000*300" />
+          <img src="https://picsum.photos/1000*300/?random" />
+          <img src="https://picsum.photos/g/1000*300" />
+          <img src="https://picsum.photos/1000*300/?random" />
+          <img src="https://picsum.photos/1000*300" />
+          <img src="https://picsum.photos/g/1000*300" />
         </Carousel>
       </div>
     );
