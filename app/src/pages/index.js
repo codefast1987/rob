@@ -13,7 +13,7 @@ export default class Page extends Component {
     return (
       <div className="main-page">
         <Header>
-          <Title>After Hours Inspection</Title>
+          <Title>Robs Report</Title>
           <Menu>
             <a href="#about">About</a>
             <a href="#info">Info</a>
