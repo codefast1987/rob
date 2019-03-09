@@ -13,7 +13,7 @@ export default class Page extends Component {
     return (
       <div className="main-page">
         <Header>
-          <Title>Robs Report</Title>
+          <Title>AAAAAAAAAAAAAAAAAA</Title>
           <Menu>
             <a href="#about">About</a>
             <a href="#info">Info</a>
@@ -66,7 +66,7 @@ export default class Page extends Component {
           qui dolorem eum fugiat quo voluptas nulla pariatur?"
         </Section>
         
-        <Section id="contact" header = "Contact">
+        <Section id="contact" >
           "Sed ut perspiciatis unde omnis iste natus error sit voluptatem
           accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
           ab illo inventore veritatis et quasi architecto beatae vitae dicta
