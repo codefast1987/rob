@@ -5,7 +5,7 @@ import Title from '../components/title';
 import Image from '../components/image';
 import BookingContainer from '../containers/booking';
 import Header from '../components/header';
-import './index.css';
+import './Index.css';
 import Carousel from '../components/carousel';
 
 export default class Page extends Component {
